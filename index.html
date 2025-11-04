@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cool </title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+    .frame-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .scrollable-iframe {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+      display: block;
+    }
+    .cover-top, .cover-bottom {
+      position: fixed;
+      left: 0;
+      width: 100%;
+      background: #000;
+      transition: opacity 0.3s ease-in-out;
+      z-index: 20;               /* above iframe */
+    }
+    .cover-top {
+      top: 0;
+      height: 90px;
+      opacity: 1;
+      pointer-events: none;      /* top bar stays transparent to clicks */
+    }
+    .cover-bottom {
+      bottom: 0;
+      height: 230px;             /* adjust as needed */
+      opacity: 1;                /* always fully visible */
+      pointer-events: auto;      /* blocks interaction with content below */
+    }
+  </style>
+</head>
+<body>
+  <div class="frame-wrap">
+    <div class="scrollable-iframe" id="scrollable">
+      <iframe src="https://quack-learn.web.app" allowfullscreen></iframe>
+    </div>
+    <div class="cover-top"></div>
+    <div class="cover-bottom"></div>
+  </div>
+
+  <!-- No longer needed – overlay is static -->
+  <!--
+  <script>
+    const scrollable = document.getElementById('scrollable');
+    const coverBottom = document.getElementById('cover-bottom');
+    scrollable.addEventListener('scroll', () => {
+      const scrollTop = scrollable.scrollTop;
+      const clientHeight = scrollable.clientHeight;
+      const scrollHeight = scrollable.scrollHeight;
+      if (scrollTop + clientHeight >= scrollHeight - 5) {
+        coverBottom.style.opacity = '1';
+      } else {
+        coverBottom.style.opacity = '0';
+      }
+    });
+  </script>
+  -->
+</body>
+</html>
